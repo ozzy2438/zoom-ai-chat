@@ -1,0 +1,135 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.language-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.language-toggle button {
+  background-color: #61dafb;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.language-toggle button.active {
+  background-color: #2196f3;
+}
+
+.chat-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.from-english {
+  background-color: #e3f2fd;
+}
+
+.from-turkish {
+  background-color: #fff3e0;
+}
+
+.original {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.translated {
+  font-style: italic;
+  color: #666;
+}
+
+.current-speech {
+  background-color: #e8f5e9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.controls button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.controls button.listening {
+  background-color: #f44336;
+}
+
+.controls button:hover {
+  opacity: 0.9;
+}
