@@ -4,7 +4,8 @@
     "express": "^4.19.2",
     "openai": "^4.58.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "parcel": "^2.12.0"
   },
   "scripts": {
     "start": "node src/server.js",
@@ -13,7 +14,9 @@
   "devDependencies": {
     "buffer": "^6.0.3",
     "nodemon": "^3.1.4",
-    "parcel": "^2.12.0",
     "process": "^0.11.10"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

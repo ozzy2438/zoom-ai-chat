@@ -2,17 +2,11 @@
     "version": 2,
     "builds": [
       {
-        "src": "src/server.js",
-        "use": "@vercel/node"
-      },
-      {
         "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "public" }
+        "use": "@vercel/node"
       }
     ],
     "routes": [
-      { "src": "/translate", "dest": "src/server.js" },
-      { "src": "/(.*)", "dest": "/public/$1" }
+      { "src": "/(.*)", "dest": "/src/server.js" }
     ]
   }
