@@ -28,7 +28,7 @@ function App() {
       const interimTranscript = lastResult[0].transcript;
       setCurrentSpeech(interimTranscript);
 
-      if (lastResult.isFinal && Date.now() - lastTranslationTime > 2000) {
+      if (lastResult.isFinal && Date.now() - lastTranslationTime > 3000) {
         try {
           const response = await axios.post('/translate', {
             text: interimTranscript,
