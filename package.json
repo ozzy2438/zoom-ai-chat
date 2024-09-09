@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "dev": "parcel watch src/App.jsx --dist-dir public",
     "build": "parcel build src/App.jsx --dist-dir public"
   },
   "devDependencies": {

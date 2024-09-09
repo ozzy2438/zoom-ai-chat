@@ -1,20 +1,20 @@
 const express = require('express');
 const axios = require('axios');
 const OpenAI = require('openai');
+const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.post('/translate', async (req, res) => {

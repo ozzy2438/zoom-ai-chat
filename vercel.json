@@ -1,9 +1,18 @@
 {
+    "version": 2,
     "builds": [
       {
+        "src": "src/server.js",
+        "use": "@vercel/node"
+      },
+      {
         "src": "package.json",
-        "use": "@vercel/node",
-        "config": { "maxLambdaSize": "50mb" }
+        "use": "@vercel/static-build",
+        "config": { "distDir": "public" }
       }
+    ],
+    "routes": [
+      { "src": "/translate", "dest": "src/server.js" },
+      { "src": "/(.*)", "dest": "/public/$1" }
     ]
   }
