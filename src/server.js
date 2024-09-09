@@ -13,11 +13,7 @@ const openai = new OpenAI({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-});
-
-app.post('/translate', async (req, res) => {
+app.post('/api/translate', async (req, res) => {
   const { text, isEnglish } = req.body;
   
   try {
@@ -28,7 +24,7 @@ app.post('/translate', async (req, res) => {
         { role: "system", content: "You are a translator." },
         { role: "user", content: `Translate the following text to ${targetLanguage}: "${text}"` }
       ],
-      max_tokens: 150,
+      max_tokens: 500,
     });
     
     res.json({ translation: response.choices[0].message.content.trim() });
@@ -36,6 +32,10 @@ app.post('/translate', async (req, res) => {
     console.error('Error:', error);
     res.status(500).json({ error: 'Translation failed' });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.listen(port, () => {
