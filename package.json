@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node src/server.js",
-    "build": "parcel build src/App.jsx --dist-dir public"
+    "build": "parcel build src/App.jsx --dist-dir public",
+    "vercel-build": "npm run build"
   },
   "devDependencies": {
     "buffer": "^6.0.3",
