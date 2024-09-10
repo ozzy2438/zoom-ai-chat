@@ -2,7 +2,7 @@
   "name": "zoom-ai-chat",
   "version": "1.0.0",
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "npm": "7.x"
   },
   "dependencies": {
