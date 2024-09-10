@@ -1,4 +1,5 @@
 module.exports = {
-  outDir: 'public',
+  entries: ['public/index.html'],
+  outDir: 'dist',
   outFile: 'bundle.js',
 };
