@@ -124,10 +124,32 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
+  margin: 0 10px;
+}
+
+.controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .controls button.listening {
   background-color: #f44336;
+}
+
+.controls button.paused {
+  background-color: #ff9800;
+}
+
+.saved-recordings {
+  margin-top: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.saved-recordings h2 {
+  margin-top: 0;
+  color: #333;
 }
 
 .controls button:hover {

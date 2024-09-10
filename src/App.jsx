@@ -10,6 +10,8 @@ function App() {
   const [currentSpeech, setCurrentSpeech] = useState('');
   const chatWindowRef = useRef(null);
   const [lastTranslationTime, setLastTranslationTime] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [recordedMessages, setRecordedMessages] = useState([]);
 
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -48,7 +50,7 @@ function App() {
       }
     };
 
-    if (isListening) {
+    if (isListening && !isPaused) {
       recognition.start();
     } else {
       recognition.stop();
@@ -57,7 +59,7 @@ function App() {
     return () => {
       recognition.stop();
     };
-  }, [isListening, isEnglish, lastTranslationTime]);
+  }, [isListening, isEnglish, lastTranslationTime, isPaused]);
 
   useEffect(() => {
     if (chatWindowRef.current) {
@@ -68,6 +70,15 @@ function App() {
   const toggleLanguage = () => {
     setIsEnglish(!isEnglish);
     setIsListening(false); // Stop listening when switching languages
+  };
+
+  const togglePause = () => {
+    setIsPaused(!isPaused);
+  };
+
+  const saveRecording = () => {
+    setRecordedMessages([...recordedMessages, ...messages]);
+    setMessages([]);
   };
 
   return (
@@ -96,9 +107,28 @@ function App() {
       </div>
       <div className="controls">
         <button onClick={() => setIsListening(!isListening)} className={isListening ? 'listening' : ''}>
-          {isListening ? (isEnglish ? 'Stop Listening' : 'Dinlemeyi Durdur') : (isEnglish ? 'Start Listening' : 'Dinlemeye Başla')}
+          {isListening ? (isEnglish ? 'Stop Recording' : 'Kaydı Durdur') : (isEnglish ? 'Start Recording' : 'Kayda Başla')}
+        </button>
+        {isListening && (
+          <button onClick={togglePause} className={isPaused ? 'paused' : ''}>
+            {isPaused ? (isEnglish ? 'Resume' : 'Devam Et') : (isEnglish ? 'Pause' : 'Duraklat')}
+          </button>
+        )}
+        <button onClick={saveRecording} disabled={messages.length === 0}>
+          {isEnglish ? 'Save Recording' : 'Kaydı Kaydet'}
         </button>
       </div>
+      {recordedMessages.length > 0 && (
+        <div className="saved-recordings">
+          <h2>{isEnglish ? 'Saved Recordings' : 'Kaydedilmiş Konuşmalar'}</h2>
+          {recordedMessages.map((message, index) => (
+            <div key={index} className={`message ${message.fromEnglish ? 'from-english' : 'from-turkish'}`}>
+              <p className="original">{message.original}</p>
+              <p className="translated">{message.translated}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
