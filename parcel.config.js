@@ -1,5 +1,10 @@
 module.exports = {
-  entries: ['public/index.html'],
+  entries: ['src/App.jsx'],
   outDir: 'dist',
-  outFile: 'bundle.js',
+  publicUrl: './',
+  sourceMaps: true,
+  autoInstall: true,
+  optimizers: {
+    '*.js': ['@parcel/optimizer-terser']
+  }
 };
